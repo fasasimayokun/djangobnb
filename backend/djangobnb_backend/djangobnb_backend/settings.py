@@ -20,7 +20,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(config("DEBUG", default=0))
 
-ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ["64.226.81.32"] #config("DJANGO_ALLOWED_HOSTS").split(" ")
 
 AUTH_USER_MODEL = 'useraccount.User'
 
@@ -69,7 +69,7 @@ CORS_ALLOWED_ORIGINS = [
   'http://64.226.81.32:1337', # backend
 ]
 
-CORS_TRUSTED_ORIGINS = [
+CSRF_TRUSTED_ORIGINS = [
   'http://127.0.0.1:8000',
   'http://127.0.0.1:3000',
   'http://64.226.81.32', # frontend
