@@ -16,13 +16,13 @@ interface ConversationDetailProps {
 
 const ConversationDetail: React.FC<ConversationDetailProps> = ({userId, token, conversation, messages }) => {
   const [newMessage, setNewMessage] = useState('');
-  const messagesDiv = useRef(null);
+  const messagesDiv = useRef<HTMLDivElement>(null);
 
   const myUser = conversation.users?.find((user) => user.id == userId);
   const otherUser = conversation.users?.find((user) => user.id != userId);
   const [realtimeMessages, setRealtimeMessages] = useState<MessageType[]>([]);
 
-  const { sendJsonMessage, lastJsonMessage, readyState} = useWebSocket(`ws://127.0.0.1:8000/ws/${conversation.id}/?token=${token}`, {
+  const { sendJsonMessage, lastJsonMessage, readyState} = useWebSocket(`${process.env.NEXT_PUBLIC_WS_HOST}/ws/${conversation.id}/?token=${token}`, {
     share: false,
     shouldReconnect: () => true,
   });
